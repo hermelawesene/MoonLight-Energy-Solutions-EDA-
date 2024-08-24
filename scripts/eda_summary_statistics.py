@@ -2,18 +2,25 @@ import pandas as pd
 
 def summary_statistics(df):
     print('reach here...')
-    summary = df.describe().transpose()
+
+    numeric_df = df.select_dtypes(include=['number'])
+    print('reach here...')
+    # Transpose summary statistics to add custom statistics
+    summary = numeric_df.describe().transpose()
     
-    #to calculate and add the mean
-    summary['mean'] = df.mean()
+    
+    print('reach here... goal')
+    # #to calculate and add the mean
+    # summary['mean'] = df.mean()
 
     # to calculate and add the median
-    summary['median'] = df.median()
+    summary['median'] = numeric_df.median()
+    print('reach here... goal1')
 
     #to calculate and add the standard deviation
-    summary['std'] = df.std()
+    summary['std'] = numeric_df.std()
 
     # to calculate and add the variance
-    summary['variance'] = df.var()
+    summary['variance'] = numeric_df.var()
     
     return summary
